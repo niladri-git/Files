@@ -1,0 +1,78 @@
+The main features of Swing are (extracted from the Swing website):
+
+    Swing is written in pure Java (except a few classes) and therefore is 100% portable.
+	
+    Swing components are lightweight. The AWT components are heavyweight (in terms of system resource utilization). Each AWT component has its own opaque native display, and always displays on top of the lightweight components. AWT components rely heavily on the underlying windowing subsystem of the native operating system. For example, an AWT button ties to an actual button in the underlying native windowing subsystem, and relies on the native windowing subsystem for their rendering and processing. Swing components (JComponents) are written in Java. They are generally not "weight-down" by complex GUI considerations imposed by the underlying windowing subsystem.
+    
+	Swing components support pluggable look-and-feel. You can choose between Java look-and-feel and the look-and-feel of the underlying OS (e.g., Windows, UNIX or Mac). If the later is chosen, a Swing button runs on the Windows looks like a Windows' button and feels like a Window's button. Similarly, a Swing button runs on the UNIX looks like a UNIX's button and feels like a UNIX's button.
+    Swing_LaFJava.png Swing_LaFNativeSystem.png
+    Swing_LaFNimbus.png Swing_LaFMotif.png
+    
+	Swing supports mouse-less operation, i.e., it can operate entirely using keyboard.
+    
+	Swing components support "tool-tips".
+    
+	Swing components are JavaBeans – a Component-based Model used in Visual Programming (like Visual Basic). You can drag-and-drop a Swing component into a "design form" using a "GUI builder" and double-click to attach an event handler.
+    
+	Swing application uses AWT event-handling classes (in package java.awt.event). Swing added some new classes in package javax.swing.event, but they are not frequently used.
+    
+	Swing application uses AWT's layout manager (such as FlowLayout and BorderLayout in package java.awt). It added new layout managers, such as Springs, Struts, and BoxLayout (in package javax.swing).
+    
+	Swing implements double-buffering and automatic repaint batching for smoother screen repaint.
+    
+	Swing introduces JLayeredPane and JInternalFrame for creating Multiple Document Interface (MDI) applications.
+    
+	Swing supports floating toolbars (in JToolBar), splitter control, "undo".
+    
+	Others - check the Swing website.
+	
+	+++++
+
+Swing Program Template
+	
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+ 
+// A Swing GUI application inherits from top-level container javax.swing.JFrame
+public class ...... extends JFrame {
+ 
+   // private variables
+   // ......
+ 
+   /** Constructor to setup the GUI components */
+   public ......() {
+      Container cp = this.getContentPane();
+ 
+      // Content-pane sets layout
+      cp.setLayout(new ....Layout());
+ 
+      // Allocate the GUI components
+      // .....
+ 
+      // Content-pane adds components
+      cp.add(....);
+ 
+      // Source object adds listener
+      // .....
+ 
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         // Exit the program when the close-window button clicked
+      setTitle("......");  // "this" JFrame sets title
+      setSize(300, 150);   // "this" JFrame sets initial size (or pack())
+      setVisible(true);    // show it
+   }
+ 
+   /** The entry main() method */
+   public static void main(String[] args) {
+      // Run GUI codes in Event-Dispatching thread for thread-safety
+      SwingUtilities.invokeLater(new Runnable() {
+         @Override
+         public void run() {
+            new ......();  // Let the constructor do the job
+         }
+      });
+   }
+} 
+
++++++++++
